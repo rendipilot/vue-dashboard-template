@@ -2,7 +2,7 @@
   <div class="mx-auto my-auto h-9/10 w-9/10 bg-blue-100 rounded-md p-4">
     <div class="flex justify-between">
       <button class="p-4 rounded-md bg-[#22177A] text-white font-medium">
-        Add new product
+        Add new user
       </button>
       <input
         type="text"

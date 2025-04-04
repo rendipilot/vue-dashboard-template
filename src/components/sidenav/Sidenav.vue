@@ -23,6 +23,13 @@
     >
       Table Product
     </RouterLink>
+    <RouterLink
+      to="/team"
+      class="text-left"
+      :class="{ 'font-semibold': $route.path === '/team' }"
+    >
+      Table Team
+    </RouterLink>
   </div>
 </template>
 
