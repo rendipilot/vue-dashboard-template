@@ -1,6 +1,7 @@
 <template>
-  <div class="header flex w-screen h-16 bg-[#22177A]">
+  <div class="header flex justify-between w-screen h-16 bg-[#22177A]">
     <p class="text-white text-xl my-auto ml-4 font-semibold">Crud Table</p>
+    <button class="flex items-center justify-center h-8 my-auto rounded-md p-4 mr-4 text-white font-medium bg-[#1B56FD]">Login</button>
   </div>
   <div class="flex w-screen h-[calc(100vh-4rem)] overflow-hidden">
     <Sidenav />

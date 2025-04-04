@@ -1,7 +1,7 @@
 <template>
   <div class="main-content flex w-9/10 h-full">
     <!-- table -->
-     <Home v-if="$route.path === '/'"/>
+    <Home v-if="$route.path === '/'"/>
     <User v-if="$route.path === '/user'" />
     <Product v-if="$route.path === '/product'"/>
   </div>
