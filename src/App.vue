@@ -1,5 +1,5 @@
 <template>
-  <Setup/>
+<RouterView/>
 </template>
 
 <script setup>
