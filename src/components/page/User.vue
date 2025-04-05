@@ -8,35 +8,42 @@
         type="text"
         placeholder="Search..."
         class="p-2 rounded-md w-64 bg-white"
+        v-model="searchQuery"
       />
     </div>
-    <div class="h-8/10 mt-6 bg-white rounded-md">
-      <table class="min-w-full overflow-hidden rounded-md">
+    <div class="h-8/10 mt-6 bg-white rounded-md flex flex-col">
+      <table class="min-w-full overflow-hidden rounded-md flex flex-col h-full">
         <thead>
-          <tr class="bg-[#22177A] text-white">
-            <th class="px-4 py-2 text-left">Name</th>
-            <th class="px-4 py-2 text-left">Title</th>
-            <th class="px-4 py-2 text-left">Year Join</th>
-            <th class="px-4 py-2 text-left">Action</th>
+          <tr class="flex bg-[#22177A] text-white">
+            <th class="flex-1 pl-4 py-2 text-left border-r border-white">Name</th>
+            <th class="flex-1 pl-4 py-2 text-left border-r border-white">Title</th>
+            <th class="flex-1 pl-4 py-2 text-left border-r border-white">Year Join</th>
+            <th class="flex-1 pl-4 py-2 text-left border-r border-white">Action</th>
           </tr>
         </thead>
-        <tbody>
-          <tr v-for="user in filteredUsers" :key="user.id">
-            <td class="px-4 py-2">{{ user.name }}</td>
-            <td class="px-4 py-2">{{ user.title }}</td>
-            <td class="px-4 py-2">{{ user.year }}</td>
-            <td class="px-4 py-2 flex gap-4">
-              <button class="flex items-center justify-center p-4 bg-amber-300 text-white font-medium rounded-md h-8">Edit</button>
-              <button class="flex items-center justify-center p-4 bg-orange-700 text-white font-medium rounded-md h-8">Delete</button>
+        <tbody class="flex-1 flex flex-col">
+          <tr v-for="user in filteredUsers" :key="user.id" class="border border-gray-200 flex-1 flex items-center">
+            <td class="pl-4 flex-1">{{ user.name }}</td>
+            <td class="pl-4 flex-1">{{ user.title }}</td>
+            <td class="pl-4 flex-1">{{ user.year }}</td>
+            <td class="pl-4 flex-1 flex gap-4">
+              <button
+                class="flex items-center justify-center p-4 bg-amber-300 text-white font-medium rounded-md h-8"
+              >
+                Edit
+              </button>
+              <button
+                class="flex items-center justify-center p-4 bg-orange-700 text-white font-medium rounded-md h-8"
+              >
+                Delete
+              </button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
     <div class="flex justify-end mt-4">
-      <nav
-        aria-label="Pagination"
-      >
+      <nav aria-label="Pagination">
         <ul class="flex items-center space-x-2">
           <li>
             <button
@@ -82,26 +89,26 @@
   </div>
 </template>
 
+<script setup>
+import { ref, computed } from "vue";
 
-<script>
-export default {
-  data() {
-    return {
-      searchQuery: '',
-      users: [
-        { id: 1, name: 'Andy', title: 'Supervisor', year: '2020' },
-        { id: 2, name: 'Ryan', title: 'Staff', year: '2021' },
-        { id: 3, name: 'Albert', title: 'Staff', year: '2015' },
-        { id: 4, name: 'Angga', title: 'Security', year: '2018' }
-      ]
-    };
-  },
-  computed: {
-    filteredUsers() {
-      return this.users.filter(user =>
-        user.name.toLowerCase().includes(this.searchQuery.toLowerCase())
-      );
-    }
-  }
-};
+const searchQuery = ref("");
+const users = ref([
+  { id: 1, name: "Andy", title: "Supervisor", year: "2020" },
+  { id: 2, name: "Ryan", title: "Staff", year: "2021" },
+  { id: 3, name: "Albert", title: "Staff", year: "2015" },
+  { id: 4, name: "Angga", title: "Security", year: "2018" },
+  { id: 5, name: "Budi", title: "Manager", year: "2019" },
+  { id: 6, name: "Citra", title: "Assistant", year: "2022" },
+  { id: 7, name: "Dani", title: "Supervisor", year: "2021" },
+  { id: 8, name: "Eka", title: "Staff", year: "2017" },
+  { id: 9, name: "Faisal", title: "Security", year: "2020" },
+  { id: 10, name: "Gita", title: "Manager", year: "2016" },
+]);
+
+const filteredUsers = computed(() => {
+  return users.value.filter((user) => 
+    user.name.toLowerCase().includes(searchQuery.value.toLowerCase())
+  );
+});
 </script>

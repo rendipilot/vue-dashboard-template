@@ -8,24 +8,31 @@
         type="text"
         placeholder="Search..."
         class="p-2 rounded-md w-64 bg-white"
+        v-model="searchQuery"
       />
     </div>
-    <div class="h-8/10 mt-6 bg-white rounded-md">
-      <table class="min-w-full overflow-hidden rounded-md">
+    <div class="h-8/10 mt-6 bg-white rounded-md flex flex-col">
+      <table class="min-w-full overflow-hidden rounded-md flex flex-col h-full">
         <thead>
-          <tr class="bg-[#22177A] text-white">
-            <th class="px-4 py-2 text-left">Product Name</th>
-            <th class="px-4 py-2 text-left">Price</th>
-            <th class="px-4 py-2 text-left">Category</th>
-            <th class="px-4 py-2 text-left">Action</th>
+          <tr class="flex bg-[#22177A] text-white">
+            <th class="pl-4 flex-1 py-2 text-left border-r border-white">
+              Product Name
+            </th>
+            <th class="pl-4 flex-1 py-2 text-left border-r border-white">Price</th>
+            <th class="pl-4  flex-1 py-2 text-left border-r border-white">Category</th>
+            <th class="pl-4 flex-1 py-2 text-left border-r border-white">Action</th>
           </tr>
         </thead>
-        <tbody>
-          <tr v-for="product in filteredProducts" :key="product.id">
-            <td class="px-4 py-2">{{ product.name }}</td>
-            <td class="px-4 py-2">{{ product.price }}</td>
-            <td class="px-4 py-2">{{ product.category }}</td>
-            <td class="px-4 py-2 flex gap-4">
+        <tbody class="flex-1 flex flex-col">
+          <tr
+            v-for="product in filteredProducts"
+            :key="product.id"
+            class="border border-gray-200 flex-1 flex items-center"
+          >
+            <td class="pl-4 flex-1">{{ product.name }}</td>
+            <td class="pl-4 flex-1">{{ product.price }}</td>
+            <td class="pl-4 flex-1">{{ product.category }}</td>
+            <td class="pl-4 flex gap-4 flex-1">
               <button
                 class="flex items-center justify-center p-4 bg-amber-300 text-white font-medium rounded-md h-8"
               >
@@ -42,9 +49,7 @@
       </table>
     </div>
     <div class="flex justify-end mt-4">
-      <nav
-        aria-label="Pagination"
-      >
+      <nav aria-label="Pagination">
         <ul class="flex items-center space-x-2">
           <li>
             <button
@@ -90,25 +95,26 @@
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      searchQuery: "",
-      products: [
-        { id: 1, name: "Product 1", price: "$10", category: "Category A" },
-        { id: 2, name: "Product 2", price: "$20", category: "Category B" },
-        { id: 3, name: "Product 3", price: "$30", category: "Category A" },
-        { id: 4, name: "Product 4", price: "$40", category: "Category C" },
-      ],
-    };
-  },
-  computed: {
-    filteredProducts() {
-      return this.products.filter((product) =>
-        product.name.toLowerCase().includes(this.searchQuery.toLowerCase())
-      );
-    },
-  },
-};
+<script setup>
+import { ref, computed } from "vue";
+
+const searchQuery = ref("");
+const products = ref([
+  { id: 1, name: "Product 1", price: "$10", category: "Category A" },
+  { id: 2, name: "Product 2", price: "$20", category: "Category B" },
+  { id: 3, name: "Product 3", price: "$30", category: "Category A" },
+  { id: 4, name: "Product 4", price: "$40", category: "Category C" },
+  { id: 5, name: "Product 5", price: "$50", category: "Category A" },
+  { id: 6, name: "Product 6", price: "$60", category: "Category B" },
+  { id: 7, name: "Product 7", price: "$70", category: "Category C" },
+  { id: 8, name: "Product 8", price: "$80", category: "Category A" },
+  { id: 9, name: "Product 9", price: "$90", category: "Category B" },
+  { id: 10, name: "Product 10", price: "$100", category: "Category C" },
+]);
+
+const filteredProducts = computed(() => {
+  return products.value.filter((product) =>
+    product.name.toLowerCase().includes(searchQuery.value.toLowerCase())
+  );
+});
 </script>
