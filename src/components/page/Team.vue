@@ -1,5 +1,6 @@
 <template>
   <div class="mx-auto my-auto h-9/10 w-9/10 bg-blue-100 rounded-md p-4">
+    <p class="text-black mb-4">-> Team</p>
     <div class="flex justify-between">
       <button class="p-4 rounded-md bg-[#22177A] text-white font-medium">
         Add new team
@@ -10,7 +11,7 @@
         class="p-2 rounded-md w-64 bg-white"
       />
     </div>
-    <div class="h-8/10 mt-6 bg-white rounded-md flex flex-col">
+    <div class="h-8/10 mt-2 bg-white rounded-md flex flex-col">
       <table class="min-w-full overflow-hidden rounded-md flex flex-col h-full">
         <thead>
           <tr class="flex bg-[#22177A] text-white">
@@ -43,7 +44,7 @@
         </tbody>
       </table>
     </div>
-    <div class="flex justify-end mt-4">
+    <div class="flex justify-end mt-2">
       <nav aria-label="Pagination">
         <ul class="flex items-center space-x-2">
           <li>
