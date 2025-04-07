@@ -1,32 +1,32 @@
 <template>
   <div
-    class="left-nav flex flex-col pt-8 pl-4 gap-4 w-1/10 h-full bg-[#EBEAFF]"
+    class="left-nav flex flex-col pt-8 w-1/10 h-full bg-[#EBEAFF]"
   >
     <RouterLink
       to="/"
-      class="text-left"
-      :class="{ 'font-semibold': $route.path === '/' }"
+      class="text-left p-2"
+      :class="{ 'text-white font-semibold bg-blue-300': $route.path === '/' }"
     >
       Home
     </RouterLink>
     <RouterLink
       to="/user"
-      class="text-left"
-      :class="{ 'font-semibold': $route.path === '/user' }"
+      class="text-left p-2"
+      :class="{ 'text-white font-semibold bg-blue-300': $route.path === '/user' }"
     >
       Table User
     </RouterLink>
     <RouterLink
       to="/product"
-      class="text-left"
-      :class="{ 'font-semibold': $route.path === '/product' }"
+      class="text-left p-2"
+      :class="{ 'text-white font-semibold bg-blue-300': $route.path === '/product' }"
     >
       Table Product
     </RouterLink>
     <RouterLink
       to="/team"
-      class="text-left"
-      :class="{ 'font-semibold': $route.path === '/team' }"
+      class="text-left p-2"
+      :class="{ 'text-white font-semibold bg-blue-300': $route.path === '/team' }"
     >
       Table Team
     </RouterLink>
