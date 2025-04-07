@@ -111,7 +111,9 @@ const users = ref([
 
 const filteredUsers = computed(() => {
   return users.value.filter((user) => 
-    user.name.toLowerCase().includes(searchQuery.value.toLowerCase())
+    user.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    user.title.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    user.year.toLowerCase().includes(searchQuery.value.toLowerCase())
   );
 });
 

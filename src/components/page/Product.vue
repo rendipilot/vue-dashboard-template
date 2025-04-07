@@ -123,7 +123,9 @@ const products = ref([
 
 const filteredProducts = computed(() => {
   return products.value.filter((product) =>
-    product.name.toLowerCase().includes(searchQuery.value.toLowerCase())
+    product.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    product.price.toLocaleLowerCase().includes(searchQuery.value.toLocaleLowerCase()) ||
+    product.category.toLocaleLowerCase().includes(searchQuery.value.toLocaleLowerCase())
   );
 });
 

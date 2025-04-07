@@ -9,6 +9,7 @@
         type="text"
         placeholder="Search..."
         class="p-2 rounded-md w-64 bg-white"
+        v-model="searchQuery"
       />
     </div>
     <div class="h-8/10 mt-2 bg-white rounded-md flex flex-col">
@@ -110,7 +111,9 @@ const teams = ref([
 
 const filteredTeams = computed(() => {
   return teams.value.filter((team) =>
-    team.name.toLowerCase().includes(searchQuery.value.toLowerCase())
+    team.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    team.member.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    team.division.toLowerCase().includes(searchQuery.value.toLowerCase())
   );
 });
 
