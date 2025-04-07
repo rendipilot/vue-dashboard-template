@@ -18,27 +18,35 @@
             <th class="pl-4 flex-1 py-2 text-left border-r border-white">
               Product Name
             </th>
-            <th class="pl-4 flex-1 py-2 text-left border-r border-white">Price</th>
-            <th class="pl-4  flex-1 py-2 text-left border-r border-white">Category</th>
-            <th class="pl-4 flex-1 py-2 text-left border-r border-white">Action</th>
+            <th class="pl-4 flex-1 py-2 text-left border-r border-white">
+              Price
+            </th>
+            <th class="pl-4 flex-1 py-2 text-left border-r border-white">
+              Category
+            </th>
+            <th class="pl-4 flex-1 py-2 text-left border-r border-white">
+              Action
+            </th>
           </tr>
         </thead>
         <tbody class="flex-1 flex flex-col">
           <tr
-            v-for="product in filteredProducts"
-            :key="product.id"
+            v-for="(product, index) in displayProducts"
+            :key="index"
             class="border border-gray-200 flex-1 flex items-center"
           >
-            <td class="pl-4 flex-1">{{ product.name }}</td>
-            <td class="pl-4 flex-1">{{ product.price }}</td>
-            <td class="pl-4 flex-1">{{ product.category }}</td>
+            <td class="pl-4 flex-1">{{ product.name || "" }}</td>
+            <td class="pl-4 flex-1">{{ product.price || "" }}</td>
+            <td class="pl-4 flex-1">{{ product.category || "" }}</td>
             <td class="pl-4 flex gap-4 flex-1">
               <button
+                v-if="product.name"
                 class="flex items-center justify-center p-4 bg-amber-300 text-white font-medium rounded-md h-8"
               >
                 Edit
               </button>
               <button
+                v-if="product.name"
                 class="flex items-center justify-center p-4 bg-orange-700 text-white font-medium rounded-md h-8"
               >
                 Delete
@@ -106,15 +114,25 @@ const products = ref([
   { id: 4, name: "Product 4", price: "$40", category: "Category C" },
   { id: 5, name: "Product 5", price: "$50", category: "Category A" },
   { id: 6, name: "Product 6", price: "$60", category: "Category B" },
-  { id: 7, name: "Product 7", price: "$70", category: "Category C" },
-  { id: 8, name: "Product 8", price: "$80", category: "Category A" },
-  { id: 9, name: "Product 9", price: "$90", category: "Category B" },
-  { id: 10, name: "Product 10", price: "$100", category: "Category C" },
+  // { id: 7, name: "Product 7", price: "$70", category: "Category C" },
+  // { id: 8, name: "Product 8", price: "$80", category: "Category A" },
+  // { id: 9, name: "Product 9", price: "$90", category: "Category B" },
+  // { id: 10, name: "Product 10", price: "$100", category: "Category C" },
 ]);
 
 const filteredProducts = computed(() => {
   return products.value.filter((product) =>
     product.name.toLowerCase().includes(searchQuery.value.toLowerCase())
   );
+});
+
+const displayProducts = computed(() => {
+  const dataProducts = 10;
+  const emptyRows = Array(dataProducts - filteredProducts.value.length).fill({
+    name: "",
+    price: "",
+    category: "",
+  });
+  return [...filteredProducts.value, ...emptyRows];
 });
 </script>

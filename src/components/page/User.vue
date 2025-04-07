@@ -22,17 +22,19 @@
           </tr>
         </thead>
         <tbody class="flex-1 flex flex-col">
-          <tr v-for="user in filteredUsers" :key="user.id" class="border border-gray-200 flex-1 flex items-center">
-            <td class="pl-4 flex-1">{{ user.name }}</td>
-            <td class="pl-4 flex-1">{{ user.title }}</td>
-            <td class="pl-4 flex-1">{{ user.year }}</td>
+          <tr v-for="(user, index) in displayUsers" :key="index" class="border border-gray-200 flex-1 flex items-center">
+            <td class="pl-4 flex-1">{{ user.name || ""}}</td>
+            <td class="pl-4 flex-1">{{ user.title || ""}}</td>
+            <td class="pl-4 flex-1">{{ user.year || ""}}</td>
             <td class="pl-4 flex-1 flex gap-4">
               <button
+              v-if="user.name"
                 class="flex items-center justify-center p-4 bg-amber-300 text-white font-medium rounded-md h-8"
               >
                 Edit
               </button>
               <button
+              v-if="user.name"
                 class="flex items-center justify-center p-4 bg-orange-700 text-white font-medium rounded-md h-8"
               >
                 Delete
@@ -100,10 +102,10 @@ const users = ref([
   { id: 4, name: "Angga", title: "Security", year: "2018" },
   { id: 5, name: "Budi", title: "Manager", year: "2019" },
   { id: 6, name: "Citra", title: "Assistant", year: "2022" },
-  { id: 7, name: "Dani", title: "Supervisor", year: "2021" },
-  { id: 8, name: "Eka", title: "Staff", year: "2017" },
-  { id: 9, name: "Faisal", title: "Security", year: "2020" },
-  { id: 10, name: "Gita", title: "Manager", year: "2016" },
+  // { id: 7, name: "Dani", title: "Supervisor", year: "2021" },
+  // { id: 8, name: "Eka", title: "Staff", year: "2017" },
+  // { id: 9, name: "Faisal", title: "Security", year: "2020" },
+  // { id: 10, name: "Gita", title: "Manager", year: "2016" },
 ]);
 
 const filteredUsers = computed(() => {
@@ -111,4 +113,15 @@ const filteredUsers = computed(() => {
     user.name.toLowerCase().includes(searchQuery.value.toLowerCase())
   );
 });
+
+const displayUsers = computed(() => {
+  const dataUsers = 10
+  const emptyRows = Array(dataUsers - filteredUsers.value.length).fill({
+    name: "",
+    title : "",
+    year: ""
+  });
+
+  return [...filteredUsers.value, ...emptyRows]
+})
 </script>
