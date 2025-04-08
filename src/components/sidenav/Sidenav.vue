@@ -12,21 +12,21 @@
     <RouterLink
       to="/user"
       class="text-left p-2"
-      :class="{ 'text-white font-semibold bg-blue-300': $route.path === '/user' }"
+      :class="{ 'text-white font-semibold bg-blue-300': $route.path.includes('/user') }"
     >
       Table User
     </RouterLink>
     <RouterLink
       to="/product"
       class="text-left p-2"
-      :class="{ 'text-white font-semibold bg-blue-300': $route.path === '/product' }"
+      :class="{ 'text-white font-semibold bg-blue-300': $route.path.includes('/product') }"
     >
       Table Product
     </RouterLink>
     <RouterLink
       to="/team"
       class="text-left p-2"
-      :class="{ 'text-white font-semibold bg-blue-300': $route.path === '/team' }"
+      :class="{ 'text-white font-semibold bg-blue-300': $route.path.includes('/team') }"
     >
       Table Team
     </RouterLink>
