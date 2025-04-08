@@ -30,6 +30,12 @@ const routes = [
     component: Setup,
     meta: { requiresAuth: true }
   },
+  {
+    path: '/product/create',
+    name: "product-create",
+    component: Setup,
+    meta: { requiresAuth: true}
+  }
 ];
 
 const router = createRouter({

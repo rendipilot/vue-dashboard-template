@@ -4,6 +4,7 @@
     <User v-if="$route.path === '/user'" />
     <Product v-if="$route.path === '/product'"/>
     <Team v-if="$route.path === '/team'"/>
+    <CreateProduct v-if="$route.path === '/product/create'"/>
   </div>
 </template>
 
@@ -13,4 +14,5 @@ import Home from '../page/Home.vue';
 import Product from '../page/Product.vue';
 import User from '../page/User.vue';
 import Team from '../page/Team.vue';
+import CreateProduct from '../page/CreateProduct.vue';
 </script>
