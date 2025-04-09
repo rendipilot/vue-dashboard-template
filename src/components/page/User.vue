@@ -2,7 +2,7 @@
   <div class="mx-auto my-auto h-9/10 w-9/10 bg-blue-100 rounded-md p-4">
     <p class="text-black mb-4">-> User</p>
     <div class="flex justify-between">
-      <button class="p-4 rounded-md bg-[#22177A] text-white font-medium">
+      <button @click="toCreate" class="p-4 rounded-md bg-[#22177A] text-white font-medium">
         Add new user
       </button>
       <input
@@ -94,6 +94,10 @@
 
 <script setup>
 import { ref, computed } from "vue";
+import { useRouter } from "vue-router";
+
+
+const router = useRouter();
 
 const searchQuery = ref("");
 const users = ref([
@@ -127,4 +131,8 @@ const displayUsers = computed(() => {
 
   return [...filteredUsers.value, ...emptyRows]
 })
+
+const toCreate = () => {
+  router.push("/user/create")
+}
 </script>
