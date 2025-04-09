@@ -6,6 +6,7 @@
     <Team v-if="$route.path === '/team'"/>
     <CreateProduct v-if="$route.path === '/product/create'"/>
     <CreateUser v-if="$route.path === '/user/create'"/>
+    <CreateTeam v-if="$route.path === '/team/create'"/>
   </div>
 </template>
 
@@ -17,4 +18,5 @@ import User from '../page/User.vue';
 import Team from '../page/Team.vue';
 import CreateProduct from '../page/CreateProduct.vue';
 import CreateUser from '../page/CreateUser.vue';
+import CreateTeam from '../page/CreateTeam.vue';
 </script>

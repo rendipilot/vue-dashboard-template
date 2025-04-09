@@ -41,6 +41,12 @@ const routes = [
     name: "user-create",
     component: Setup,
     meta: { requiresAuth: true}
+  },
+  {
+    path: '/team/create',
+    name: "team-create",
+    component: Setup,
+    meta: { requiresAuth: true}
   }
 ];
 
