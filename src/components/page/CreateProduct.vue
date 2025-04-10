@@ -1,8 +1,8 @@
 <template>
   <div class="mx-auto my-auto h-9/10 w-9/10 bg-blue-100 rounded-md p-4">
-    <p class="text-black mb-4">-> Product -> Create product</p>
+    <p class="text-black mb-4">-> Product -> {{ props.isEdit ? 'Update Product' : 'Create Product' }}</p>
     <div>
-      <h1 class="text-bold text-2xl mb-5">Create New Product</h1>
+      <h1 class="text-bold text-2xl mb-5">{{ props.isEdit ? 'Update Product' : 'Create Product' }}</h1>
       <form @submit.prevent="sendData">
         <p class="my-4">Name</p>
         <input
@@ -56,13 +56,23 @@
 </template>
 
 <script setup>
-import { computed, ref } from "vue";
+import { useProductStore } from "@/stores/product";
+import { computed, inject, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 const router = useRouter();
+const route = useRoute();
 const name = ref("");
 const price = ref("");
 const category = ref("");
+const dataUpdate = ref(null);
+const productStore = useProductStore();
+const editData = computed(() => productStore.editData)
+
+const props = defineProps({
+  isEdit: Boolean,
+  id: String,
+});
 
 const isWrong = ref(false);
 
@@ -76,4 +86,6 @@ const sendData = () => {
   router.push("/product");
 
 };
+
+
 </script>

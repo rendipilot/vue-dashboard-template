@@ -47,6 +47,12 @@ const routes = [
     name: "team-create",
     component: Setup,
     meta: { requiresAuth: true}
+  },
+  {
+    path: '/product/:edit/edit',
+    name: "product-edit",
+    component: Setup,
+    meta: {requiresAuth: true}
   }
 ];
 

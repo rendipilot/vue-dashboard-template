@@ -42,6 +42,7 @@
             <td class="pl-4 flex-1">{{ product.category || "" }}</td>
             <td class="pl-4 flex gap-4 flex-1">
               <button
+              @click="handleEdit(product.id)"
                 v-if="product.name"
                 class="flex items-center justify-center p-4 bg-amber-300 text-white font-medium rounded-md h-8"
               >
@@ -108,12 +109,14 @@
 
 <script setup>
 import { useRouter } from "vue-router";
-import { ref, computed } from "vue";
+import { ref, computed} from "vue";
 import DeleteModal from "../items/DeleteModal.vue";
+import { useProductStore } from "@/stores/product";
 
 const router = useRouter();
 const showDeleteModal = ref(false);
 const selectedId = ref(null);
+const productStore = useProductStore();
 
 const searchQuery = ref("");
 const products = ref([
@@ -159,6 +162,12 @@ const handleDelete = () => {
     selectedId.value = null
   }
 }
+
+const handleEdit = (productId) => {
+  const editData = products.value.find(product => product.id === productId)
+  productStore.setEditData(editData);
+  router.push(`/product/${productId}/edit`);
+};
 
 const toCreate = () => {
   router.push("/product/create")

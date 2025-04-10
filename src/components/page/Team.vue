@@ -1,5 +1,5 @@
 <template>
-  <div class="relative mx-auto my-auto h-9/10 w-9/10 bg-blue-100 rounded-md p-4">
+  <div class="mx-auto my-auto h-9/10 w-9/10 bg-blue-100 rounded-md p-4">
     <DeleteModal :show="showDeleteModal" @cancel="showDeleteModal = false" @confirm="handleDelete"/>
     <p class="text-black mb-4">-> Team</p>
     <div class="flex justify-between">
