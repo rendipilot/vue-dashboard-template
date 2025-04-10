@@ -1,5 +1,6 @@
 <template>
   <div class="mx-auto my-auto h-9/10 w-9/10 bg-blue-100 rounded-md p-4">
+    <DeleteModal :show="showDeleteModal" @cancel="showDeleteModal = false" @confirm="handleDelete"/>
     <p class="text-black mb-4">-> Product</p>
     <div class="flex justify-between">
       <button @click="toCreate" class="p-4 rounded-md bg-[#22177A] text-white font-medium">
@@ -47,6 +48,7 @@
                 Edit
               </button>
               <button
+              @click="openDeleteModal(product.id)"
                 v-if="product.name"
                 class="flex items-center justify-center p-4 bg-orange-700 text-white font-medium rounded-md h-8"
               >
@@ -107,9 +109,11 @@
 <script setup>
 import { useRouter } from "vue-router";
 import { ref, computed } from "vue";
-
+import DeleteModal from "../items/DeleteModal.vue";
 
 const router = useRouter();
+const showDeleteModal = ref(false);
+const selectedId = ref(null);
 
 const searchQuery = ref("");
 const products = ref([
@@ -142,6 +146,19 @@ const displayProducts = computed(() => {
   });
   return [...filteredProducts.value, ...emptyRows];
 });
+
+const openDeleteModal = (id) => {
+  selectedId.value = id
+  showDeleteModal.value = true
+}
+
+const handleDelete = () => {
+  if(selectedId.value !== null){
+    products.value = products.value.filter(product => product.id !== selectedId.value);
+    showDeleteModal.value = false
+    selectedId.value = null
+  }
+}
 
 const toCreate = () => {
   router.push("/product/create")
