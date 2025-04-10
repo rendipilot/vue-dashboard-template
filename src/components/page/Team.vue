@@ -97,8 +97,9 @@ import { computed, ref } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
-
 const searchQuery = ref("");
+const selectedId = ref(null)
+
 const teams = ref([
   { id: 1, name: "Angelions", member: "1", division: "Marketing" },
   { id: 2, name: "Monyehoney", member: "2", division: "Logistic" },
