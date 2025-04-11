@@ -30,6 +30,7 @@
             <td class="pl-4 flex-1 py-2">{{ team.division || "" }}</td>
             <td class="pl-4 flex-1 py-2 flex gap-4">
               <button
+              @click="handleEdit(team.id)"
               v-if="team.name"
                 class="flex items-center justify-center p-4 bg-amber-300 text-white font-medium rounded-md h-8"
               >
@@ -98,11 +99,13 @@
 import { computed, ref } from "vue";
 import { useRouter } from "vue-router";
 import DeleteModal from "../items/DeleteModal.vue";
+import { useTeamStore } from "@/stores/team";
 
 const router = useRouter();
 const searchQuery = ref("");
 const showDeleteModal = ref(false);
 const selectedId = ref(null)
+const teamStore = useTeamStore();
 
 const teams = ref([
   { id: 1, name: "Angelions", member: "1", division: "Marketing" },
@@ -146,6 +149,12 @@ const handleDelete = () => {
     showDeleteModal.value = false
     selectedId.value = null
   }
+}
+
+const handleEdit = (teamId) => {
+  const editData = teams.value.find(team => team.id === teamId)
+  teamStore.setEditData(editData);
+  router.push(`/team/${teamId}/edit`);
 }
 
 const toCreate = () => {

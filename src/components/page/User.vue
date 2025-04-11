@@ -30,6 +30,7 @@
             <td class="pl-4 flex-1">{{ user.year || ""}}</td>
             <td class="pl-4 flex-1 flex gap-4">
               <button
+              @click="handleEdit(user.id)"
               v-if="user.name"
                 class="flex items-center justify-center p-4 bg-amber-300 text-white font-medium rounded-md h-8"
               >
@@ -98,11 +99,13 @@
 import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
 import DeleteModal from "../items/DeleteModal.vue";
+import { useUserStore } from "@/stores/user";
 
 
 const router = useRouter();
 const showDeleteModal = ref(false);
 const selectedId = ref(null);
+const userStore = useUserStore();
 
 const searchQuery = ref("");
 const users = ref([
@@ -148,6 +151,12 @@ const handleDelete = () => {
     showDeleteModal.value = false
     selectedId.value = null
   }
+}
+
+const handleEdit = (userId) => {
+  const editData = users.value.find(user => user.id === userId)
+  userStore.setEditData(editData);
+  router.push(`/user/${userId}/edit`);
 }
 
 const toCreate = () => {

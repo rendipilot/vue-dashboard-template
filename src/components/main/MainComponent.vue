@@ -8,14 +8,13 @@
       v-if="$route.path === '/product/create' || $route.path.startsWith('/product/')"
       :isEdit="$route.path.includes('/edit')"
       :id="$route.params.id"
-      :productData="$route.params.productData"
     />
-    <CreateUser v-if="$route.path === '/user/create' || $route.path.includes('/user/')"
-      :isEdit="$route.path.includes('/user/edit')"
+    <CreateUser v-if="$route.path === '/user/create' || $route.path.startsWith('/user/')"
+      :isEdit="$route.path.includes('/edit')"
       :id="$route.params.id"
     />
-    <CreateTeam v-if="$route.path === '/team/create' || $route.path.includes('/team/')"
-      :is-edit="$route.path.includes('/team/edit')"
+    <CreateTeam v-if="$route.path === '/team/create' || $route.path.startsWith('/team/')"
+      :isEdit="$route.path.includes('/edit')"
       :id="$route.params.id"
     />
   </div>

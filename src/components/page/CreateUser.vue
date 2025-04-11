@@ -56,11 +56,25 @@ import { computed, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
+import { useUserStore } from "@/stores/user";
 
 const router = useRouter();
 const name = ref("");
 const year = ref(new Date().getFullYear());
 const title = ref("");
+const userStore = useUserStore()
+const editData = computed(() => userStore.editData)
+
+const props = defineProps({
+  isEdit: Boolean,
+  id: String,
+});
+
+if(props.isEdit){
+  name.value = editData.value.name,
+  year.value = editData.value.year,
+  title.value = editData.value.title
+}
 
 const isWrong = ref(false);
 

@@ -53,7 +53,19 @@ const routes = [
     name: "product-edit",
     component: Setup,
     meta: {requiresAuth: true}
-  }
+  },
+  {
+    path: '/user/:edit/edit',
+    name: "user-edit",
+    component: Setup,
+    meta: {requiresAuth: true}
+  },
+  {
+    path: '/team/:edit/edit',
+    name: "team-edit",
+    component: Setup,
+    meta: {requiresAuth: true}
+  },
 ];
 
 const router = createRouter({

@@ -57,15 +57,13 @@
 
 <script setup>
 import { useProductStore } from "@/stores/product";
-import { computed, inject, ref } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { computed, ref } from "vue";
+import { useRouter } from "vue-router";
 
 const router = useRouter();
-const route = useRoute();
 const name = ref("");
 const price = ref("");
 const category = ref("");
-const dataUpdate = ref(null);
 const productStore = useProductStore();
 const editData = computed(() => productStore.editData)
 
@@ -73,6 +71,12 @@ const props = defineProps({
   isEdit: Boolean,
   id: String,
 });
+
+if(props.isEdit){
+  name.value = editData.value.name,
+  price.value = editData.value.price,
+  category.value = editData.value.category
+}
 
 const isWrong = ref(false);
 
